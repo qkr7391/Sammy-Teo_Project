@@ -11,7 +11,7 @@ const clientSessions = require("client-sessions");
 
 
 //css part
-app.use(express.static('css'));
+// app.use(express.static('css'));
 app.use(express.urlencoded({ extended: true }));
 
 // call this function after the http server starts listening for requests

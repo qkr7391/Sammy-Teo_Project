@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import axiosInstance from "../utils/axios";
 
 const Register = () => {
@@ -23,12 +22,10 @@ const Register = () => {
     };
 
     const fetchData = async (event) => {
-        event.prevenetDefault();
-
         // await axios.get('url').then((response) => setInputs(response.data));
 
         try {
-            const response = await axiosInstance.post("YOUR_API_ENDPOINT/register", inputs);
+            const response = await axiosInstance.post("/users/register", inputs);
             console.log("Registration successful!", response.data);
             // Handle success, redirect, or show a success message to the user
         } catch (error) {
@@ -41,27 +38,27 @@ const Register = () => {
         <>
             <br></br>
             <form onSubmit={fetchData}>
-                <lable>ID </lable>
+                <label>ID </label>
                 <input type="text" id="id" value={id} onChange={onChange} />
                 <br></br>
                 <br></br>
 
-                <lable>PASSWORD </lable>
+                <label>PASSWORD </label>
                 <input type="password" id="pw" value={pw} onChange={onChange} />
                 <br></br>
                 <br></br>
 
-                <lable>PASSWORD CONFIRM </lable>
+                <label>PASSWORD CONFIRM </label>
                 <input type="password" id="pwCheck" value={pwCheck} onChange={onChange} />
                 <br></br>
                 <br></br>
 
-                <lable>EMAIL </lable>
+                <label>EMAIL </label>
                 <input type="email" id="email" value={email} onChange={onChange} />
                 <br></br>
                 <br></br>
             </form>
-            <button type="submit" className="btn-primary">
+            <button className="btn-primary" onClick={fetchData}>
                 {" "}
                 Register
             </button>

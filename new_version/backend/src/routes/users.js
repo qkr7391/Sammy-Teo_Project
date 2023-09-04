@@ -4,7 +4,10 @@ const User = require("../models/User");
 
 router.post("/register", async (req, res, next) => {
     try {
-        console.log(req.body);
+        const user = new User(req.body);
+
+        await user.save();
+        return res.sendStatus(200);
     } catch (error) {
         next(error);
     }

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-
+import axios from "axios";
 
 const Register = () => {
     const [inputs, setInputs] = useState({
@@ -21,10 +21,25 @@ const Register = () => {
         })
     };
 
+    const fetchData = async (event) => {
+        event.prevenetDefault();
+
+        // await axios.get('url').then((response) => setInputs(response.data));
+
+        try {
+            const response = await axios.post('YOUR_API_ENDPOINT/register', inputs);
+            console.log('Registration successful!', response.data);
+            // Handle success, redirect, or show a success message to the user
+          } catch (error) {
+            console.error('Registration failed:', error);
+            // Handle error, display error message, etc.
+          }
+    };
+
     return (
         <>
         <br></br>
-        <form>
+        <form onSubmit={fetchData}>
             <lable>ID </lable>
             <input type="text" id="id" value={id} onChange={onChange} />
             <br></br><br></br>

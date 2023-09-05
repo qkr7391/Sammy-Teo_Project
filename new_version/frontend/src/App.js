@@ -9,18 +9,18 @@ function App() {
 	return (
 		<div className="App">
 			<div>
-				<ul>
+				<ul className="ml-4 mt-4 mb-4">
 					<Link to="/">Home</Link>
 				</ul>
 			</div>
 
-			<div>
-				<ul>
-					<li>
-						<Link to="/login">Login</Link>{" "}
+			<div className="absolute top-0 right-0">
+				<ul className="flex content-right">
+					<li className="mr-4 mt-4 mb-4">
+						<Link to="/login"> Login </Link>
 					</li>
-					<li>
-						<Link to="/register">Register</Link>
+					<li className="mr-4 mt-4 mb-4">
+						<Link to="/register"> Register </Link>
 					</li>
 				</ul>
 			</div>

@@ -32,7 +32,8 @@ const Register = () => {
 
 		//Distinguish that password and passwordcheck is same or not
 		if (!checkPW(pw, pwCheck)) {
-			return;
+			alert("Password do not match");
+			console.log("Registration failed: check Password and Password Confirm");
 		} else {
 			try {
 				const response = await axiosInstance.post("/users/register", inputs);

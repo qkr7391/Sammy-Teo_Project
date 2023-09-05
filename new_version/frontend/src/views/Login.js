@@ -22,7 +22,7 @@ const Login = () => {
 		<>
 			<section>
 				<div>
-					<h1 className="text-3xl font-semibold text-center"> Login </h1>
+					<h1 className="mt-20 text-3xl font-semibold text-center"> Login </h1>
 				</div>
 				<div className="flex content-center justify-center">
 					<form className="mt-10">

@@ -30,13 +30,18 @@ const Register = () => {
 	const fetchData = async (event) => {
 		// await axios.get('url').then((response) => setInputs(response.data));
 
-		try {
-			const response = await axiosInstance.post("/users/register", inputs);
-			console.log("Registration successful!", response.data);
-			// Handle success, redirect, or show a success message to the user
-		} catch (error) {
-			console.error("Registration failed:", error);
-			// Handle error, display error message, etc.
+		//Distinguish that password and passwordcheck is same or not
+		if (!checkPW(pw, pwCheck)) {
+			return;
+		} else {
+			try {
+				const response = await axiosInstance.post("/users/register", inputs);
+				console.log("Registration successful!", response.data);
+				// Handle success, redirect, or show a success message to the user
+			} catch (error) {
+				console.error("Registration failed:", error);
+				// Handle error, display error message, etc.
+			}
 		}
 	};
 
@@ -44,7 +49,7 @@ const Register = () => {
 		<>
 			<section>
 				<div>
-					<h1 className="text-3xl font-semibold text-center"> Register </h1>
+					<h1 className="mt-20 text-3xl font-semibold text-center">Register</h1>
 				</div>
 				<div className="flex justify-center">
 					<form className="mt-10">

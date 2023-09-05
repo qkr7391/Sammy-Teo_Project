@@ -116,7 +116,7 @@ const Register = () => {
 						</div>
 					</form>
 				</div>
-				<div className="mt-6">
+				<div className="mt-6 flex content-center justify-center">
 					<button
 						className="border bg-blue-100 rounded-md px-4 py-2"
 						onClick={fetchData}

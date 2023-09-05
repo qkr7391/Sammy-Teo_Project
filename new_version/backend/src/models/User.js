@@ -31,7 +31,7 @@ const userSchema = mongoose.Schema({
 userSchema.pre("save", async function (next) {
     // user is the data that we want to save
     let user = this;
-
+    console.log(user);
     if (user.isModified("password")) {
         const salt = await bcrypt.genSalt(10); // make random value
         const hash = await bcrypt.hash(user.password, salt); // Hash password with salt
@@ -46,3 +46,6 @@ userSchema.methods.comparePassword = async function (plainPassword) {
     const match = bcrypt.compare(plainPassword, user.password);
     return match;
 };
+
+const User = mongoose.model("User", userSchema);
+module.exports = User;

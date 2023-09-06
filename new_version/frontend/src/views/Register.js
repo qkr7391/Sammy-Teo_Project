@@ -3,13 +3,13 @@ import axiosInstance from "../utils/axios";
 
 const Register = () => {
 	const [inputs, setInputs] = useState({
-		id: "",
+		name: "",
 		pw: "",
 		pwCheck: "",
 		email: "",
 	});
 
-	const { id, pw, pwCheck, email } = inputs;
+	const { name, pw, pwCheck, email } = inputs;
 
 	const onChange = (event) => {
 		const value = event.target.value;
@@ -56,17 +56,17 @@ const Register = () => {
 					<form className="mt-10">
 						<div className="relative mb-4">
 							<label
-								htmlFor="id"
+								htmlFor="name"
 								className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
 							>
 								{" "}
-								ID{" "}
+								Name{" "}
 							</label>
 							<input
 								type="text"
-								id="id"
+								id="name"
 								className="w-full px-4 py-2 mt-2 bg-white border rounded-md"
-								value={id}
+								value={name}
 								onChange={onChange}
 							/>
 						</div>

@@ -1,7 +1,16 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+
 import axiosInstance from "../utils/axios";
 
 const Register = () => {
+	// const {
+	//     register,
+	//     handleSubmit,
+	//     formState: { errors },
+	//     reset,
+	// } = useForm({ mode: "onChanges" });
+
 	const [inputs, setInputs] = useState({
 		name: "",
 		password: "",
@@ -27,21 +36,42 @@ const Register = () => {
 		return false;
 	};
 
+	// const onSubmit = ({ name, password, email }) => {
+	//     reset();
+	// };
+
+	// //required name
+	// const userName = {
+	//     required: "Required field",
+	// };
+
+	// //required email
+	// const userEmail = {
+	//     required: "Required field",
+	// };
+
+	// //required password
+	// const userPassword = {
+	//     required: "Required field",
+	// };
+
+	// await axios.get('url').then((response) => setInputs(response.data));
 	const fetchData = async (event) => {
-		// await axios.get('url').then((response) => setInputs(response.data));
+		//new object for sending data except passwordCheck
 		const data = { name, password, email };
+
 		//Distinguish that password and passwordcheck is same or not
 		if (!checkPW(password, pwCheck)) {
 			alert("Password do not match");
 			console.log("Registration failed: check Password and Password Confirm");
 		} else {
 			try {
+				// Handle success, redirect, or show a success message to the user
 				const response = await axiosInstance.post("/users/register", data);
 				console.log("Registration successful!", response.data);
-				// Handle success, redirect, or show a success message to the user
 			} catch (error) {
-				console.error("Registration failed:", error);
 				// Handle error, display error message, etc.
+				console.error("Registration failed:", error);
 			}
 		}
 	};
@@ -56,6 +86,7 @@ const Register = () => {
 						</h1>
 					</div>
 					<div className="flex justify-center">
+						{/* <form className="mt-10" onSubmit={handleSubmit(onSubmit)}> */}
 						<form className="mt-10">
 							<div className="relative mb-4">
 								<label
@@ -71,7 +102,13 @@ const Register = () => {
 									className="w-full px-4 py-2 mt-2 bg-white border rounded-md"
 									value={name}
 									onChange={onChange}
+									// {...register("name", userName)}
 								/>
+								{/* {errors?.name && (
+									<div>
+										<span className="text-red-500">{errors.name.massage}</span>
+									</div>
+								)} */}
 							</div>
 
 							<div className="relative mb-4">
@@ -88,7 +125,15 @@ const Register = () => {
 									className="w-80 px-4 py-2 mt-2 bg-white border rounded-md"
 									value={password}
 									onChange={onChange}
+									// {...register("password", userPassword)}
 								/>
+								{/* {errors?.password && (
+									<div>
+										<span className="text-red-500">
+											{errors.password.massage}
+										</span>
+									</div>
+								)} */}
 							</div>
 
 							<div className="relative mb-4">
@@ -105,7 +150,15 @@ const Register = () => {
 									className="w-80 px-4 py-2 mt-2 bg-white border rounded-md"
 									value={pwCheck}
 									onChange={onChange}
+									// {...register("pwCheck", userPassword)}
 								/>
+								{/* {errors?.pwCheck && (
+									<div>
+										<span className="text-red-500">
+											{errors.pwCheck.massage}
+										</span>
+									</div>
+								)} */}
 							</div>
 
 							<div className="relative mb-4">
@@ -121,7 +174,13 @@ const Register = () => {
 									className="w-80 px-4 py-2 mt-2 bg-white border rounded-md"
 									value={email}
 									onChange={onChange}
+									// {...register("email", userEmail)}
 								/>
+								{/* {errors?.email && (
+									<div>
+										<span className="text-red-500">{errors.email.massage}</span>
+									</div>
+								)} */}
 							</div>
 						</form>
 					</div>

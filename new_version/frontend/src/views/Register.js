@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+// import { useForm } from "react-hook-form";
+// import { Redirect } from "react-router-dom";
 
 import axiosInstance from "../utils/axios";
 
@@ -69,6 +70,8 @@ const Register = () => {
 				// Handle success, redirect, or show a success message to the user
 				const response = await axiosInstance.post("/users/register", data);
 				console.log("Registration successful!", response.data);
+				// Success register, redirect to home
+				// <Redirect to="/" />;
 			} catch (error) {
 				// Handle error, display error message, etc.
 				console.error("Registration failed:", error);

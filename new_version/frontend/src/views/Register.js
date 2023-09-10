@@ -5,12 +5,12 @@ import { useForm } from "react-hook-form";
 import axiosInstance from "../utils/axios";
 
 const Register = () => {
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-		reset,
-	} = useForm({ mode: "onChange" });
+	// const {
+	// 	register,
+	// 	handleSubmit,
+	// 	formState: { errors },
+	// 	reset,
+	// } = useForm({ mode: "onChange" });
 
 	const [inputs, setInputs] = useState({
 		name: "",
@@ -37,45 +37,51 @@ const Register = () => {
 		return false;
 	};
 
-	const onSubmit = ({ name, password, pwCheck, email }) => {
-		reset();
-	};
+	// const onSubmit = ({ name, password, pwCheck, email }) => {
+	// 	reset();
+	// };
 
-	//required name
-	const userName = {
-		required: "Required field",
-	};
+	// //required name
+	// const userName = {
+	// 	required: "Required field",
+	// };
 
-	//required email
-	const userEmail = {
-		required: "Required field",
-	};
+	// //required email
+	// const userEmail = {
+	// 	required: "Required field",
+	// };
 
-	//required password
-	const userPassword = {
-		required: "Required field",
-	};
+	// //required password
+	// const userPassword = {
+	// 	required: "Required field",
+	// };
 
 	// await axios.get('url').then((response) => setInputs(response.data));
 	const fetchData = async (event) => {
 		//new object for sending data except passwordCheck
 		const data = { name, password, email };
 
-		//Distinguish that password and passwordcheck is same or not
-		if (!checkPW(password, pwCheck)) {
-			alert("Password do not match");
-			console.log("Registration failed: check Password and Password Confirm");
-		} else {
-			try {
-				// Handle success, redirect, or show a success message to the user
-				const response = await axiosInstance.post("/users/register", data);
-				console.log("Registration successful!", response.data);
-				// Success register, redirect to home
-				// <Redirect to="/" />;
-			} catch (error) {
-				// Handle error, display error message, etc.
-				console.error("Registration failed:", error);
+		//data empty check
+		if (name !== "" && password !== "" && email !== "") {
+			//Distinguish that password and passwordcheck is same or not
+			if (!checkPW(password, pwCheck)) {
+				alert("Password do not match");
+				console.log("Registration failed: check Password and Password Confirm");
+			} else {
+				try {
+					// Handle success, redirect, or show a success message to the user
+					const response = await axiosInstance.post("/users/register", data);
+					console.log("Registration successful!", response.data);
+					// Success register, redirect to home
+					// <Redirect to="/" />;
+				} catch (error) {
+					// Handle error, display error message, etc.
+					console.error("Registration failed:", error);
+				}
 			}
+		} else {
+			alert("You need to fill all the boxes!");
+			console.log("Registration failed: lack of inputs");
 		}
 	};
 
@@ -89,8 +95,8 @@ const Register = () => {
 						</h1>
 					</div>
 					<div className="flex justify-center">
-						<form className="mt-10" onSubmit={handleSubmit(onSubmit)}>
-							{/* <form className="mt-10"> */}
+						{/* <form className="mt-10" onSubmit={handleSubmit(onSubmit)}> */}
+						<form className="mt-10">
 							<div className="relative mb-4">
 								<label
 									htmlFor="name"
@@ -103,15 +109,15 @@ const Register = () => {
 									type="text"
 									id="name"
 									className="w-full px-4 py-2 mt-2 bg-white border rounded-md"
-									{...register("name", userName)}
+									// {...register("name", userName)}
 									value={name}
 									onChange={onChange}
 								/>
-								{errors?.name && (
+								{/* {errors?.name && (
 									<div>
 										<span className="text-red-500">{errors.name.message}</span>
 									</div>
-								)}
+								)} */}
 							</div>
 
 							<div className="relative mb-4">
@@ -126,17 +132,17 @@ const Register = () => {
 									type="password"
 									id="password"
 									className="w-80 px-4 py-2 mt-2 bg-white border rounded-md"
-									{...register("password", userPassword)}
+									// {...register("password", userPassword)}
 									value={password}
 									onChange={onChange}
 								/>
-								{errors?.password && (
+								{/* {errors?.password && (
 									<div>
 										<span className="text-red-500">
 											{errors.password.message}
 										</span>
 									</div>
-								)}
+								)} */}
 							</div>
 
 							<div className="relative mb-4">
@@ -151,17 +157,17 @@ const Register = () => {
 									type="password"
 									id="pwCheck"
 									className="w-80 px-4 py-2 mt-2 bg-white border rounded-md"
-									{...register("pwCheck", userPassword)}
+									// {...register("pwCheck", userPassword)}
 									value={pwCheck}
 									onChange={onChange}
 								/>
-								{errors?.pwCheck && (
+								{/* {errors?.pwCheck && (
 									<div>
 										<span className="text-red-500">
 											{errors.pwCheck.message}
 										</span>
 									</div>
-								)}
+								)} */}
 							</div>
 
 							<div className="relative mb-4">
@@ -175,15 +181,15 @@ const Register = () => {
 									type="email"
 									id="email"
 									className="w-80 px-4 py-2 mt-2 bg-white border rounded-md"
-									{...register("email", userEmail)}
+									// {...register("email", userEmail)}
 									value={email}
 									onChange={onChange}
 								/>
-								{errors?.email && (
+								{/* {errors?.email && (
 									<div>
 										<span className="text-red-500">{errors.email.message}</span>
 									</div>
-								)}
+								)} */}
 							</div>
 						</form>
 					</div>

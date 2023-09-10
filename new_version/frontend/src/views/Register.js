@@ -21,14 +21,14 @@ const Register = () => {
 
 	const { name, password, pwCheck, email } = inputs;
 
-	// const onChange = (event) => {
-	// 	const value = event.target.value;
-	// 	const id = event.target.id;
-	// 	setInputs({
-	// 		...inputs,
-	// 		[id]: value,
-	// 	});
-	// };
+	const onChange = (event) => {
+		const value = event.target.value;
+		const id = event.target.id;
+		setInputs({
+			...inputs,
+			[id]: value,
+		});
+	};
 
 	const checkPW = (password, pwCheck) => {
 		if (password === pwCheck) {
@@ -104,6 +104,8 @@ const Register = () => {
 									id="name"
 									className="w-full px-4 py-2 mt-2 bg-white border rounded-md"
 									{...register("name", userName)}
+									value={name}
+									onChange={onChange}
 								/>
 								{errors?.name && (
 									<div>
@@ -125,6 +127,8 @@ const Register = () => {
 									id="password"
 									className="w-80 px-4 py-2 mt-2 bg-white border rounded-md"
 									{...register("password", userPassword)}
+									value={password}
+									onChange={onChange}
 								/>
 								{errors?.password && (
 									<div>
@@ -148,6 +152,8 @@ const Register = () => {
 									id="pwCheck"
 									className="w-80 px-4 py-2 mt-2 bg-white border rounded-md"
 									{...register("pwCheck", userPassword)}
+									value={pwCheck}
+									onChange={onChange}
 								/>
 								{errors?.pwCheck && (
 									<div>
@@ -170,6 +176,8 @@ const Register = () => {
 									id="email"
 									className="w-80 px-4 py-2 mt-2 bg-white border rounded-md"
 									{...register("email", userEmail)}
+									value={email}
+									onChange={onChange}
 								/>
 								{errors?.email && (
 									<div>

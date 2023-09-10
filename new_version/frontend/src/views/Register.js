@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-// import { useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 // import { Redirect } from "react-router-dom";
 
 import axiosInstance from "../utils/axios";
 
 const Register = () => {
-	// const {
-	//     register,
-	//     handleSubmit,
-	//     formState: { errors },
-	//     reset,
-	// } = useForm({ mode: "onChanges" });
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+		reset,
+	} = useForm({ mode: "onChange" });
 
 	const [inputs, setInputs] = useState({
 		name: "",
@@ -21,14 +21,14 @@ const Register = () => {
 
 	const { name, password, pwCheck, email } = inputs;
 
-	const onChange = (event) => {
-		const value = event.target.value;
-		const id = event.target.id;
-		setInputs({
-			...inputs,
-			[id]: value,
-		});
-	};
+	// const onChange = (event) => {
+	// 	const value = event.target.value;
+	// 	const id = event.target.id;
+	// 	setInputs({
+	// 		...inputs,
+	// 		[id]: value,
+	// 	});
+	// };
 
 	const checkPW = (password, pwCheck) => {
 		if (password === pwCheck) {
@@ -37,24 +37,24 @@ const Register = () => {
 		return false;
 	};
 
-	// const onSubmit = ({ name, password, email }) => {
-	//     reset();
-	// };
+	const onSubmit = ({ name, password, pwCheck, email }) => {
+		reset();
+	};
 
-	// //required name
-	// const userName = {
-	//     required: "Required field",
-	// };
+	//required name
+	const userName = {
+		required: "Required field",
+	};
 
-	// //required email
-	// const userEmail = {
-	//     required: "Required field",
-	// };
+	//required email
+	const userEmail = {
+		required: "Required field",
+	};
 
-	// //required password
-	// const userPassword = {
-	//     required: "Required field",
-	// };
+	//required password
+	const userPassword = {
+		required: "Required field",
+	};
 
 	// await axios.get('url').then((response) => setInputs(response.data));
 	const fetchData = async (event) => {
@@ -89,8 +89,8 @@ const Register = () => {
 						</h1>
 					</div>
 					<div className="flex justify-center">
-						{/* <form className="mt-10" onSubmit={handleSubmit(onSubmit)}> */}
-						<form className="mt-10">
+						<form className="mt-10" onSubmit={handleSubmit(onSubmit)}>
+							{/* <form className="mt-10"> */}
 							<div className="relative mb-4">
 								<label
 									htmlFor="name"
@@ -103,15 +103,13 @@ const Register = () => {
 									type="text"
 									id="name"
 									className="w-full px-4 py-2 mt-2 bg-white border rounded-md"
-									value={name}
-									onChange={onChange}
-									// {...register("name", userName)}
+									{...register("name", userName)}
 								/>
-								{/* {errors?.name && (
+								{errors?.name && (
 									<div>
-										<span className="text-red-500">{errors.name.massage}</span>
+										<span className="text-red-500">{errors.name.message}</span>
 									</div>
-								)} */}
+								)}
 							</div>
 
 							<div className="relative mb-4">
@@ -126,17 +124,15 @@ const Register = () => {
 									type="password"
 									id="password"
 									className="w-80 px-4 py-2 mt-2 bg-white border rounded-md"
-									value={password}
-									onChange={onChange}
-									// {...register("password", userPassword)}
+									{...register("password", userPassword)}
 								/>
-								{/* {errors?.password && (
+								{errors?.password && (
 									<div>
 										<span className="text-red-500">
-											{errors.password.massage}
+											{errors.password.message}
 										</span>
 									</div>
-								)} */}
+								)}
 							</div>
 
 							<div className="relative mb-4">
@@ -151,17 +147,15 @@ const Register = () => {
 									type="password"
 									id="pwCheck"
 									className="w-80 px-4 py-2 mt-2 bg-white border rounded-md"
-									value={pwCheck}
-									onChange={onChange}
-									// {...register("pwCheck", userPassword)}
+									{...register("pwCheck", userPassword)}
 								/>
-								{/* {errors?.pwCheck && (
+								{errors?.pwCheck && (
 									<div>
 										<span className="text-red-500">
-											{errors.pwCheck.massage}
+											{errors.pwCheck.message}
 										</span>
 									</div>
-								)} */}
+								)}
 							</div>
 
 							<div className="relative mb-4">
@@ -175,15 +169,13 @@ const Register = () => {
 									type="email"
 									id="email"
 									className="w-80 px-4 py-2 mt-2 bg-white border rounded-md"
-									value={email}
-									onChange={onChange}
-									// {...register("email", userEmail)}
+									{...register("email", userEmail)}
 								/>
-								{/* {errors?.email && (
+								{errors?.email && (
 									<div>
-										<span className="text-red-500">{errors.email.massage}</span>
+										<span className="text-red-500">{errors.email.message}</span>
 									</div>
-								)} */}
+								)}
 							</div>
 						</form>
 					</div>

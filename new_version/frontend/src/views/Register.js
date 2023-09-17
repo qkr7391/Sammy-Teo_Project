@@ -54,7 +54,7 @@ const Register = () => {
 					console.log("Registration successful!", response.data);
 
 					// Success register, redirect to home
-					// navigate("/login");
+					navigate("/login");
 				} catch (error) {
 					// Handle error, display error message, etc.
 					console.error("Registration failed:", error);

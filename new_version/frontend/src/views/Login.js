@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axiosInstance from "../utils/axios";
 
 const Login = () => {
 	const [inputs, setInputs] = useState({
@@ -16,6 +18,33 @@ const Login = () => {
 			...inputs,
 			[id]: value,
 		});
+	};
+	const navigate = useNavigate();
+
+	// await axios.get('url').then((response) => setInputs(response.data));
+	const fetchData = async (event) => {
+		const data = { name, password };
+		const validDatas = name.length >= 1 && password.length >= 1;
+
+		//all datas should more than 1 length.
+		if (validDatas) {
+			try {
+				// Handle success, redirect, or show a success message to the user
+				const response = await axiosInstance.post("/users/login", data);
+				console.log("Login successful!", response.data);
+
+				// Success register, redirect to main page
+				navigate("/main");
+			} catch (error) {
+				// Handle error, display error message, etc.
+				console.error("Login failed:", error);
+			}
+		}
+		//empty datas
+		else {
+			alert("You need to fill all the boxes!");
+			console.log("Registration failed: lack of inputs");
+		}
 	};
 
 	return (
@@ -63,7 +92,10 @@ const Login = () => {
 						</form>
 					</div>
 					<div className="mt-6 flex content-center justify-center">
-						<button className="border bg-blue-100 rounded-md px-4 py-2">
+						<button
+							className="border bg-blue-100 rounded-md px-4 py-2"
+							onClick={fetchData}
+						>
 							{" "}
 							Login
 						</button>

@@ -41,7 +41,7 @@ const Register = () => {
 		const validDatas =
 			name.length >= 1 && password.length >= 1 && email.length >= 1;
 
-		//all datas should more than 1 lenght and email should include @ and .
+		//all datas should more than 1 length and email should include @ and .
 		if (validDatas && validEmail) {
 			//Distinguish that password and passwordcheck is same or not
 			if (!checkPW(password, pwCheck)) {
@@ -53,7 +53,7 @@ const Register = () => {
 					const response = await axiosInstance.post("/users/register", data);
 					console.log("Registration successful!", response.data);
 
-					// Success register, redirect to home
+					// Success register, redirect to login page
 					navigate("/login");
 				} catch (error) {
 					// Handle error, display error message, etc.

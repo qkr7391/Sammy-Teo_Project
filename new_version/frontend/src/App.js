@@ -205,7 +205,7 @@ function App() {
 								<ul class="text-gray-500 dark:text-gray-400 font-medium">
 									<li class="mb-4">
 										<a
-											href="https://github.com/themesberg/flowbite"
+											href="https://github.com/qkr7391/Sammy-Teo_Project"
 											class="hover:underline "
 										>
 											Github
